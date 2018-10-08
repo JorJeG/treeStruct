@@ -96,6 +96,8 @@ class TreeStruct {
       this.editTitleEl.setAttribute('contenteditable', 'false');
       this.editTitleEl.blur();
       this.editTitle(this.data, this.selectedId, this.editTitleEl.textContent);
+      this.editTitleEl = null;
+      this.updateView();
       console.log('Вы изменили название элемента');
     }
     this.selected = [];
@@ -109,6 +111,7 @@ class TreeStruct {
         el.setAttribute('draggable', 'true');
       });
       this.updateView();
+      this.editTitleEl = null; 
       console.log('Вы изменили название элемента');
     }
   }
