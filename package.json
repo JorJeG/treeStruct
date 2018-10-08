@@ -1,0 +1,26 @@
+{
+  "name": "tree_struct",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JorJeG/treeStruct.git"
+  },
+  "keywords": [],
+  "author": "JorJeG",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JorJeG/treeStruct/issues"
+  },
+  "homepage": "https://github.com/JorJeG/treeStruct#readme",
+  "devDependencies": {
+    "browser-sync": "^2.26.0",
+    "gulp": "^4.0.0",
+    "gulp-concat": "^2.6.1"
+  }
+}
