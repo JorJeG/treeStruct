@@ -64,7 +64,7 @@ class TreeStruct {
     this.selectedId = curId;
   
     if (event.target.classList.contains('edit')) {
-      console.log('edit');
+      console.log('Вы можете изменить название элемента');
       this.editTitleEl = event.target.parentElement.querySelector('.title');
       this.editTitleEl.addEventListener('keydown', (e) => this.handleKey(e));
       this.dragElements.forEach(el => el.setAttribute('draggable', 'false'))
@@ -73,7 +73,7 @@ class TreeStruct {
     }
   
     if (event.target.classList.contains('add')) {
-      console.log('add');
+      console.log('Вы добавили новый элемент');
       const newNode = {
         "id": Date.now().toString(),
         "value": "new Node",
@@ -84,18 +84,19 @@ class TreeStruct {
     }
   
     if (event.target.classList.contains('del')) {
-      console.log('del');
+      console.log('Вы удалили элемент с id ' + this.selectedId);
       this.removeNode(this.data, this.selectedId);
       this.updateView();
     }
   }
 
   removeVisible() {
-    // console.log(this.selectedId);
     this.selected.forEach(el => el.classList.remove('visible'));
     if (this.editTitleEl) {
       this.editTitleEl.setAttribute('contenteditable', 'false');
       this.editTitleEl.blur();
+      this.editTitle(this.data, this.selectedId, this.editTitleEl.textContent);
+      console.log('Вы изменили название элемента');
     }
     this.selected = [];
     this.dragElements.forEach(el => el.setAttribute('draggable', 'true'));
@@ -103,11 +104,12 @@ class TreeStruct {
 
   handleKey(event) {
     if (event.keyCode === 13) {
-      this.editTitle(data, this.selectedId, event.target.textContent);
+      this.editTitle(this.data, this.selectedId, event.target.textContent);
       this.dragElements.forEach(el => {
         el.setAttribute('draggable', 'true');
       });
       this.updateView();
+      console.log('Вы изменили название элемента');
     }
   }
 
@@ -186,10 +188,11 @@ class TreeStruct {
   handleDrop(event) {
     event.preventDefault();
     if ( event.target.className == "dropzone" && event.target.dataset.id !== this.draggedId) {
-        const dropId = event.target.dataset.id;
-        this.removeNode(this.data, this.draggedId);
-        this.addNode(this.data, this.removeEl[0], dropId);
-        this.updateView()
+      console.log('Вы переместили элемент');
+      const dropId = event.target.dataset.id;
+      this.removeNode(this.data, this.draggedId);
+      this.addNode(this.data, this.removeEl[0], dropId);
+      this.updateView()
     }
     event.target.style.background = "";
   }
